@@ -11,26 +11,37 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <style>
+    body{
+        background:url(./img/img1.jpg) no-repeat center;
+        background-size: cover;
+    }
     #app {
-        width: 500px;
-        padding: 68px 41px;
-        box-shadow: 0px 0px 25px #eee;
+        width: 100%;
+        padding: 68px 0px;
+
+        /* box-shadow: 0px 0px 25px #eee; */
         margin: 78px auto;
         height: 40vh;
+        /* background-color: rgba(0, 0, 0, 0.274); */
     }
-
+    .ctn{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
     h1 {
         text-align: center;
         line-height: 30px;
         font-family: 宋体;
-        color: cadetblue;
+        color: rgb(255, 255, 255);
     }
 
     h2 {
         background: aliceblue;
         padding: 10px;
         border-radius: 15px;
-        color: cadetblue;
+        color: rgb(17, 17, 17);
         font-family: 宋体;
     }
 
@@ -39,9 +50,9 @@
         outline: none;
         border-radius: 15px;
         background-color: #eee;
-        height: 30px;
+        height: 40px;
         padding-left: 10px;
-        width: 88%;
+        width: 86%;
     }
 
     button {
@@ -49,8 +60,9 @@
         border: none;
         outline: none;
         background-color: antiquewhite;
-        height: 30px;
+        height: 40px;
         cursor: pointer;
+        width: 14%;
         /* font-family: 宋体; */
     }
 
@@ -82,8 +94,11 @@
 <body>
     <div id="app">
         <h1>搜单词</h1>
-        <input type="text" v-model="words" placeholder="请输入单词" @keyup.enter="getWords">
+        <div class="ctn">
+            <input type="text" v-model="words" placeholder="请输入单词" @keyup.enter="getWords">
         <button @click="getWords">搜索</button>
+        </div>
+        
         <h2>{{wordsList}}</h2>
     </div>
 </body>
