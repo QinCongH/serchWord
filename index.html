@@ -5,16 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>禾耳单词</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- 官网提供的 axios 在线地址 -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 </head>
 <style>
-    body{
-        background:url(./img/img1.jpg) no-repeat center;
-        background-size: cover;
+    body {
+        background: url(./img/img1.jpg) repeat center;
     }
+
     #app {
         width: 100%;
         padding: 68px 0px;
@@ -24,24 +27,27 @@
         height: 40vh;
         /* background-color: rgba(0, 0, 0, 0.274); */
     }
-    .ctn{
+
+    .ctn {
         width: 100%;
         display: flex;
         justify-content: space-around;
         align-items: center;
     }
+
     h1 {
         text-align: center;
         line-height: 30px;
         font-family: 宋体;
         color: rgb(255, 255, 255);
+        margin-bottom: 60px;
     }
 
     h2 {
-        background: aliceblue;
+        background: #00000026;
         padding: 10px;
         border-radius: 15px;
-        color: rgb(17, 17, 17);
+        color: rgb(255 255 255);
         font-family: 宋体;
     }
 
@@ -49,10 +55,15 @@
         border: none;
         outline: none;
         border-radius: 15px;
-        background-color: #eee;
+        background-color: #0000004d;
         height: 40px;
         padding-left: 10px;
         width: 86%;
+        color: #fff;
+    }
+
+    ::-webkit-input-placeholder {
+        color: aliceblue;
     }
 
     button {
@@ -63,43 +74,35 @@
         height: 40px;
         cursor: pointer;
         width: 14%;
+        background-color: #2020209c;
+        color: aliceblue;
         /* font-family: 宋体; */
     }
 
-    /* 响应式 */
-    /* 更大设备 */
-    @media screen and (min-width: 1281px) {}
-
-    /* 笔记本或PC */
-    @media screen and (min-width: 1024px) and (max-width: 1280px) {
-        #app{
-            box-shadow: none;
-        }
-    }
-
-    /* ##平板电脑/Ipad竖屏 */
-    @media screen and (min-width: 768px) and (max-width: 1023px) {}
-
-    /* 多数竖屏的智能手机 */
-    @media screen and (min-width: 320px) and (max-width: 767px) {}
-
-    /* 公共 */
-    @media screen and (min-width: 320px) and (max-width: 1023px) {
-        #app{
-            box-shadow: none;
-        }
+    .col-md-12 {
+        padding: 35px;
+        background-color: #0000001a;
     }
 </style>
 
 <body>
     <div id="app">
-        <h1>搜单词</h1>
-        <div class="ctn">
-            <input type="text" v-model="words" placeholder="请输入单词" @keyup.enter="getWords">
-        <button @click="getWords">搜索</button>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>禾耳单词</h1>
+                    <div class="ctn">
+                        <input type="text" v-model="words" placeholder="请输入单词" @keyup.enter="getWords">
+                        <button @click="getWords">搜索</button>
+                    </div>
+
+                    <h2>{{wordsList}}</h2>
+                </div>
+
+            </div>
+
         </div>
-        
-        <h2>{{wordsList}}</h2>
+
     </div>
 </body>
 <script>
