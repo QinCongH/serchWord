@@ -81,7 +81,10 @@
 
     .col-md-12 {
         padding: 35px;
-        background-color: #0000001a;
+        /* background-color: #0000001a; */
+    }
+    .hide{
+        display: none;
     }
 </style>
 
@@ -96,7 +99,7 @@
                         <button @click="getWords">搜索</button>
                     </div>
 
-                    <h2>{{wordsList}}</h2>
+                    <h2 v-bind:class="{'hide':ctnHide}">{{wordsList}}</h2>
                 </div>
 
             </div>
@@ -110,10 +113,12 @@
         el: "#app",
         data: {
             words: "",
-            wordsList: "加载中..........."
+            wordsList: "",
+            ctnHide:true
         },
         methods: {
             getWords() {
+                this.ctnHide=false;
                 let script = document.createElement("script");
                 script.src = " http://dict.youdao.com/suggest?num=1&doctype=json&q=" + this.words +
                     "&callback=test";
