@@ -9,13 +9,24 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- 官网提供的 axios 在线地址 -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://use.fontawesome.com/e9934fb665.js"></script>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 </head>
 <style>
     body {
-        background: url(./img/img1.jpg) repeat center;
+
+        margin: 0px;
+        padding: 0px;
+    }
+    /* https://api.dujin.org/bing/1920.php */
+    div.bg {
+        background: url(./img/img2.jpg) repeat center;
+        background-size: cover;
+        position: fixed;
+        inset: 0;
+        z-index: -1;
     }
 
     #app {
@@ -54,11 +65,12 @@
     input {
         border: none;
         outline: none;
-        border-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-top-left-radius: 15px;
         background-color: #0000004d;
         height: 40px;
         padding-left: 10px;
-        width: 86%;
+        width: 90%;
         color: #fff;
     }
 
@@ -67,23 +79,31 @@
     }
 
     button {
-        border-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border-top-right-radius: 15px;
         border: none;
         outline: none;
         background-color: antiquewhite;
         height: 40px;
         cursor: pointer;
-        width: 14%;
-        background-color: #2020209c;
+        width: 10%;
+        /* background-color: #2020209c; */
+        background-color: #0000004d;
         color: aliceblue;
         /* font-family: 宋体; */
+    }
+
+    button i {
+        font-size: 19px;
+        color: #faebd7ab;
     }
 
     .col-md-12 {
         padding: 35px;
         /* background-color: #0000001a; */
     }
-    .hide{
+
+    .hide {
         display: none;
     }
 </style>
@@ -96,7 +116,7 @@
                     <h1>禾耳单词</h1>
                     <div class="ctn">
                         <input type="text" v-model="words" placeholder="请输入单词" @keyup.enter="getWords">
-                        <button @click="getWords">搜索</button>
+                        <button @click="getWords"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
 
                     <h2 v-bind:class="{'hide':ctnHide}">{{wordsList}}</h2>
@@ -107,6 +127,7 @@
         </div>
 
     </div>
+    <div class="bg"></div>
 </body>
 <script>
     var app = new Vue({
@@ -114,11 +135,11 @@
         data: {
             words: "",
             wordsList: "",
-            ctnHide:true
+            ctnHide: true
         },
         methods: {
             getWords() {
-                this.ctnHide=false;
+                this.ctnHide = false;
                 let script = document.createElement("script");
                 script.src = " http://dict.youdao.com/suggest?num=1&doctype=json&q=" + this.words +
                     "&callback=test";
