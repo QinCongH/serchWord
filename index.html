@@ -20,6 +20,7 @@
         margin: 0px;
         padding: 0px;
     }
+
     /* https://api.dujin.org/bing/1920.php */
     div.bg {
         background: url(./img/img7.jpg) repeat center;
@@ -167,6 +168,26 @@
             }
         }
     })
+    document.documentElement.addEventListener('touchstart',
+        function (event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        },
+        false
+    );
+    var
+        lastTouchEnd = 0;
+    document.documentElement.addEventListener('touchend',
+        function (event) {
+            var now =Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd=now;
+        },
+        false
+    );
 </script>
 
 </html>
